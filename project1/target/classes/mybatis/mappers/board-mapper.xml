@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<select id="boardList" resultType="Map">
+		SELECT * 
+		FROM board 
+		ORDER BY bno DESC 
+		LIMIT 10
+	</select>
+
+	
+	<select id="detail" parameterType="String" resultType="boardDTO">
+<!-- 	parameterType 무슨 타입의 변수가 들어와?? -->
+
+	SELECT * FROM board WHERE bno = #{bno} 
+<!-- #{변수명}을 적어주면 변수가 들어가요   -->
+		
+	</select>
+
+</mapper>
