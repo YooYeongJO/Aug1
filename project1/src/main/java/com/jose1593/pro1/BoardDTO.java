@@ -3,7 +3,7 @@ package com.jose1593.pro1;
 
 public class BoardDTO {
 	private int bno, blike;
-	private String btitle, bwrite, bcnotent, bdate;
+	private String btitle, bwrite, bcontent, bdate;
 	
 	
 	public int getBno() {
@@ -30,11 +30,11 @@ public class BoardDTO {
 	public void setBwrite(String bwrite) {
 		this.bwrite = bwrite;
 	}
-	public String getBcnotent() {
-		return bcnotent;
+	public String getBcontent() {
+		return bcontent;
 	}
-	public void setBcnotent(String bcnotent) {
-		this.bcnotent = bcnotent;
+	public void setBcontent(String bcontent) {
+		this.bcontent = bcontent;
 	}
 	public String getBdate() {
 		return bdate;

@@ -37,4 +37,9 @@ public class BoardController {
 		
 		return "detail";
 	}
+	
+	@GetMapping("/write")
+	public String write() {
+		return "write";
+	}
 }
