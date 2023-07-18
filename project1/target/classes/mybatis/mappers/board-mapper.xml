@@ -18,5 +18,11 @@
 <!-- #{변수명}을 적어주면 변수가 들어가요   -->
 		
 	</select>
+	
+<!-- Insert는 result가 없습니다. -->
+	<insert id="write" parameterType="boardDTO" >
+		INSERT INTO board (btitle, bcontent, bwrite)
+		VALUES (#{btitle }, #{bcontent }, #{bwrite })
+	</insert>
 
 </mapper>

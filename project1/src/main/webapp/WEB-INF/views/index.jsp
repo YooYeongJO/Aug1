@@ -10,6 +10,6 @@
 <body>
 <%@ include file="menu.jsp" %>
 	<h1> 진로 (୨୧ ❛ᴗ❛)✧ </h1>
-<img alt="" src="./img/진로.PNG" height="200px" >
+<img alt="" src="./img/진로.PNG" height="100%" >
 </body>
 </html>

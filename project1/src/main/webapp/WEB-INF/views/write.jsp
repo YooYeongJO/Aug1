@@ -23,9 +23,11 @@
 
 	<h1>글쓰기</h1>
 	<div class="write-div">
-		<input type="text" name="title">
-		<textarea id="summernote" name="content"></textarea>
-		<button class="btn100" type="submit">글쓰기</button>
+		<form action="./write" method="post">
+			<input type="text" name="title">
+			<textarea id="summernote" name="content"></textarea>
+			<button class="btn100" type="submit">글쓰기</button>
+		</form>
 <!-- 		type="submit" => 제출버튼. 폼데이터로 데이터 전송 -->
 	
 	</div>
@@ -35,7 +37,9 @@
 /* textarea에 서머노트를 실행해주세요 */
  
 	$(document).ready(function() { /* 모든 것들이 다 읽어졌다면 */  
-		$('#summernote').summernote();
+		$('#summernote').summernote({ 
+			height: 400
+		});
 	});
 </script>
 </body>
