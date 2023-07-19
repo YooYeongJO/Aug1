@@ -3,10 +3,12 @@ package com.jose1593.pro1;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -50,14 +52,39 @@ public class BoardController {
 		// System.out.println(request.getParameter("title"));
 		// System.out.println(request.getParameter("content"));
 		// System.out.println("========================");
+		
+		
 		BoardDTO dto = new BoardDTO();
 		dto.setBtitle(request.getParameter("title"));
 		dto.setBcontent(request.getParameter("content"));
-		dto.setBwrite("홍길동2"); // 이건 임시로 적었습니다. 로그인 추가되면 변경하겠습니다.
-		boardService.write(dto);
+		
+		dto.setBwrite("짱구"); // 이건 임시로 적었습니다. 로그인 추가되면 변경하겠습니다.
 		
 		// Service -> DAO -> mybatis -> DB로 보내서 저장하기
+		boardService.write(dto);
+		
 		
 		return "redirect:board"; // 다시 컨트롤러 지나가기 GET방식으로 갑니다.
+	}
+	
+	// 삭제가 들어온다면 http://172.30.1.53/delete?bno=150
+	@GetMapping("/delete")
+	//                     HttpServletRequest와 getParameter();
+	public String delete(@RequestParam(value = "bno", required = true, defaultValue = "0") int bno) {  
+		//                                         required : 필수값이 반드시 있어야 하는지
+		//                                                  
+		// System.out.println("bno : " + bno);
+		
+		// dto 생성 
+		BoardDTO dto = new BoardDTO();
+		dto.setBno(bno);
+		// dto.setBwrite(null) 사용자 정보
+		// 추후 로그인을 하면 사용자의 정보도 담아서 보냅니다.
+				
+		boardService.delete(dto); 
+		
+		// 아직 서비스 안 적었어요.....
+		
+		return "redirect:board"; // 삭제를 완료한 후에 다시 보드로 갑니다. (BoardController 지나갑니다.)
 	}
 }

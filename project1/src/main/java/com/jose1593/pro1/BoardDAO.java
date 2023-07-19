@@ -33,6 +33,10 @@ public class BoardDAO {
 		 
 		
 	}
+	public void delete(BoardDTO dto) {
+		sqlSession.delete("board.delete", dto); // 네임스페이스.아이디, 값
+		
+	}
 	
 	
 	
