@@ -30,7 +30,7 @@ public class BoardService {
 			
 			}
 
-	public BoardDTO detail(String bno) { // String bno 값이 넘어온다.
+	public BoardDTO detail(int bno) { // String bno 값이 넘어온다.
 		BoardDTO dto = boardDAO.detail(bno);
 		
 						
@@ -91,6 +91,12 @@ public class BoardService {
 
 	public void delete(BoardDTO dto) {
 		boardDAO.delete(dto);
+		
+	}
+
+	public void edit(BoardDTO dto) {
+		
+		boardDAO.edit(dto);
 		
 	}
 }

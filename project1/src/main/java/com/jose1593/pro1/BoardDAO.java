@@ -22,7 +22,7 @@ public class BoardDAO {
 		// selectlist는 값 여러개 가져올때 사용
 	}
 
-	public BoardDTO detail(String bno) {
+	public BoardDTO detail(int bno) {
 		
 		return sqlSession.selectOne("board.detail", bno); // 앞에는 네임스페이스.아이디, 값
 	}
@@ -35,6 +35,11 @@ public class BoardDAO {
 	}
 	public void delete(BoardDTO dto) {
 		sqlSession.delete("board.delete", dto); // 네임스페이스.아이디, 값
+		
+	}
+
+	public void edit(BoardDTO dto) {
+		sqlSession.update("board.edit", dto);
 		
 	}
 	

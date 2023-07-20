@@ -11,7 +11,7 @@
 	</select>
 
 	
-	<select id="detail" parameterType="String" resultType="boardDTO">
+	<select id="detail" parameterType="Integer" resultType="boardDTO">
 <!-- 	parameterType 무슨 타입의 변수가 들어와?? -->
 
 	SELECT * FROM board WHERE bno = #{bno} 
@@ -29,5 +29,10 @@
 		DELETE FROM board WHERE bno=#{bno}
 		
 	</delete>
+	
+	<update id="edit" parameterType="boardDTO">
+		UPDATE board SET btitle=#{btitle }, bcontent=#{bcontent }
+		WHERE bno=#{bno } 
+	</update>
 
 </mapper>

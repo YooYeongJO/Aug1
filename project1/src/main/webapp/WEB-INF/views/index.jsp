@@ -12,6 +12,9 @@
 <body>
 <%@ include file="menu.jsp" %>
 	<h1> 진로 (୨୧ ❛ᴗ❛)✧ </h1>
-<img alt="" src="./img/짱구멱살1.jpeg" height="100%" >
+
+<img alt="" src="./img/IMG_0472.jpg" height="350px" >
+<img alt="" src="./img/로그인 화면.png" height="350px" >
+
 </body>
 </html>

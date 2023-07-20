@@ -11,6 +11,12 @@
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <!-- 자바스크립트는 닫는 head 위쪽에 적는다 -->
 <script type="text/javascript">
+	function edit() {
+		if(confirm("수정하시겠습니까?")) { // 참 거짓으로 나옵니다.
+			location.href="./edit?bno=${dto.bno }";
+		}
+	}
+
 	function del() {
 		let chk = confirm("삭제하시겠습니까?"); // 참 거짓으로 나옵니다.
 		// alert(chk);
@@ -27,7 +33,9 @@
 <!-- 2023-07-18 / 데이터베이스 구현 / 메뉴만들기, 글쓰기 -->
 	<div class="detail-content">
 		<div class="title">${dto.bno } / ${dto.btitle }
-			<img alt="" src="./img/update.png"> &nbsp; <img alt="" src="./img/trash.png" onclick="del()">
+			
+ 			<img alt="" src="./img/update.png" onclick="edit()"> <!--수정 버튼   -->
+			&nbsp; <img alt="" src="./img/trash.png" onclick="del()"> <!--삭제 버튼   -->
 		</div>
 		<div class="name-bar">
 			<div class="name">${dto.bwrite }님</div>
