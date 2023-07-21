@@ -11,11 +11,12 @@
 </head>
 <body>
 <%@ include file="menu.jsp" %>
-	<h1> 진로 (୨୧ ❛ᴗ❛)✧ </h1>
-	<%=request.getHeader("User-Agent") %>
+	<h1> 오늘은 조금만 할께요 (୨୧ ❛ᴗ❛)✧ </h1>
+	
 
-<img alt="" src="./img/IMG_0472.jpg" height="350px" >
-<img alt="" src="./img/로그인 화면.png" height="350px" >
+<img alt="" src="./img/IMG_0472.jpg" height="350px" > <br>
+
+
 
 </body>
 </html>

@@ -5,21 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet" href="./css/login.css">
+<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<div class = "front"><h1>Login</h1></div>
-	<div class="login-div">
-		<form action="./login" method="post">
-		<input type="text" name="id">
-		<input type="password" name="pw">
-		<button type="submit">로그인</button>
-		</form>
-		<form action="./board" >
-		<br>
-		<button type ="submit">돌아가기</button>
-		</form>
+	<%@ include file="menu.jsp" %>
+	<div class="main">
+		<!-- <h1>login</h1> -->
+		<div class="login-box">
+			<div class="login-image">
+				<img alt="logo" src="./img/캡처fff.PNG" height="350px">
+			</div>
+			<div class="login-form">
+				<form action="./login" method="post">
+					<input type="text" name="id" id="id" placeholder="ID" required="required" maxlength="10">
+					<input type="password" name="pw" id="pw" placeholder="PW" required="required" maxlength="15">
+					<button class="login">LOGIN</button>
+				</form>
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>
