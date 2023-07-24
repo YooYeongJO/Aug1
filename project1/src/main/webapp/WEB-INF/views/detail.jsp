@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,13 +34,17 @@
 <h1>상세보기</h1>
 <!-- 2023-07-18 / 데이터베이스 구현 / 메뉴만들기, 글쓰기 -->
 	<div class="detail-content">
-		<div class="title">${dto.bno } / ${dto.btitle }
-			
+		<div class="title">
+			${dto.bno } / ${dto.btitle }
+			<c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }"> <!-- ne(!=)  -->
+<!-- 			            mid가 null 아니야??         dto 안에 m_id가 들어 있어?? -->
  			<img alt="" src="./img/update.png" onclick="edit()"> <!--수정 버튼   -->
 			&nbsp; <img alt="" src="./img/trash.png" onclick="del()"> <!--삭제 버튼   -->
+			</c:if>
+			
 		</div>
 		<div class="name-bar">
-			<div class="name">${dto.bwrite }님</div>
+			<div class="name">${dto.m_name }님</div>
 			<div class="like">${dto.blike }</div>
 			<div class="date">${dto.bdate }</div>
 			<div class="ip">${dto.bip }</div>

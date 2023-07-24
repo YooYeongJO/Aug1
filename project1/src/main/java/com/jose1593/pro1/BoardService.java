@@ -25,13 +25,14 @@ public class BoardService {
 	
 	
 	// 보드 리스트 불러오는 메소드
-	public List<Map<String, Object>> boardList() {
+	public List<BoardDTO> boardList() {
 		return boardDAO.boardList();
 			
 			}
 
-	public BoardDTO detail(int bno) { // String bno 값이 넘어온다.
-		BoardDTO dto = boardDAO.detail(bno);
+	public BoardDTO detail(BoardDTO dto2) { // String bno 값이 넘어온다.
+		BoardDTO dto = boardDAO.detail(dto2);
+		//     나오는값             파라미터 값
 		
 						
 			// 검사 : .이 없거나, null이면 실행하지 않게 해주세요세요.

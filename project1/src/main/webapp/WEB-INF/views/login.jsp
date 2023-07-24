@@ -12,6 +12,7 @@
 </head>
 <body>
 	<%@ include file="menu.jsp" %>
+	
 	<div class="main">
 		<!-- <h1>login</h1> -->
 		<div class="login-box">
