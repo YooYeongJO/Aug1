@@ -3,36 +3,48 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="boardList" resultType="Map">
-		SELECT * 
-		FROM board 
-		ORDER BY bno DESC 
-		LIMIT 10
+	<select id="boardList" resultType="boardDTO">
+		SELECT * FROM boardview 
+		
 	</select>
 
 	
-	<select id="detail" parameterType="Integer" resultType="boardDTO">
+	<select id="detail" parameterType="boardDTO" resultType="boardDTO">
 <!-- 	parameterType 무슨 타입의 변수가 들어와?? -->
 
-	SELECT * FROM board WHERE bno = #{bno} 
+	SELECT * FROM boardview 
+	WHERE bno = #{bno} 
+	<if test="m_id != null">
+	AND m_id=#{m_id}
+	
+	</if> 
 <!-- #{변수명}을 적어주면 변수가 들어가요   -->
 		
 	</select>
 	
 <!-- Insert는 result가 없습니다. -->
+<!-- 	서브쿼리 : 쿼리 속에 쿼리가 들어가요 -->
+
 	<insert id="write" parameterType="boardDTO" >
-		INSERT INTO board (btitle, bcontent, bwrite, bip)
-		VALUES (#{btitle }, #{bcontent }, #{bwrite }, #{bip })
+		INSERT INTO board (btitle, bcontent, m_no, bip) 
+		<!-- view 테이블은 읽기만 가능해서 INSERT문에는 boardview가 들어가지 않는다 --> 
+		VALUES (#{btitle }, #{bcontent }, (SELECT m_no FROM members WHERE m_id=#{m_id }), #{bip })
 	</insert>
 	
 	<delete id="delete" parameterType="boardDTO">
-		DELETE FROM board WHERE bno=#{bno}
+		DELETE FROM board WHERE bno=#{bno} AND m_no=(SELECT m_no FROM members WHERE m_id=#{m_id })
 		
 	</delete>
 	
 	<update id="edit" parameterType="boardDTO">
 		UPDATE board SET btitle=#{btitle }, bcontent=#{bcontent }
 		WHERE bno=#{bno } 
+	</update>
+	
+ 	<update id="likeUp" parameterType="boardDTO"> <!-- 파라미터 값만 들어올 수 있다 -->		
+ 		UPDATE board SET blike = blike + 1 
+ 		WHERE bno=#{bno }
+	
 	</update>
 
 </mapper>

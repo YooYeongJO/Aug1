@@ -31,41 +31,48 @@ public class BoardService {
 			}
 
 	public BoardDTO detail(BoardDTO dto2) { // String bno 값이 넘어온다.
+		// 좋아요수 +1하기 기능을 넣어주겠습니다.
+		boardDAO.likeUp(dto2);
+		
 		BoardDTO dto = boardDAO.detail(dto2);
 		//     나오는값             파라미터 값
+		// System.out.println(dto); // 주소값
+		// System.out.println(dto.getBno()); // 번호 
+		// getBno는 null인데 getBno를 해서 출력이 안되고 프로그래밍이 깨져버린다
 		
-						
+		// System.out.println(dto.getBip()); // String ip
+		
+		if(dto != null) { // 내 글이 아닐때 null들어옵니다. 즉, null이 아닐때라고 검사해주세요.
 			// 검사 : .이 없거나, null이면 실행하지 않게 해주세요세요.
-			if(dto.getBip() != null && dto.getBip().indexOf(".") != -1 ) {
-					
-				// 여기서 ip 뽑아올 수 있죠??
-				 String ip = dto.getBip();
-				// ip 중간에 하트 넣어주실 수 있죠??
-				 String[] ipArr = ip.split("[.]"); // ("\\.")
-				 ipArr[1] = "♡";
-				
-				// 그거 다시 ip에 저장하실 수 있죠??
-				  dto.setBip(String.join(".", ipArr));
-				// 끝.
-			
-			// 172.30.1.53 ---> 172.♡.1.53
-			
-			// 번외 (ip주소 전체 변경)
-			// 검사 : .이 없거나, null이면 실행하지 않게 해주세요세요.
-			// if(dto.getBip() != null && dto.getBip().indexOf(".") != -1 ) {
-				  // 여기서 ip 뽑아올 수 있죠??
-						// String ip = dto.getBip();
-				  // ip 중간에 하트 넣어주실 수 있죠??
-						// ip = ip.replaceAll("\\d", "♡"); 
+						if(dto.getBip() != null && dto.getBip().indexOf(".") != -1 ) {
+								
+							// 여기서 ip 뽑아올 수 있죠??
+							 String ip = dto.getBip();
+							// ip 중간에 하트 넣어주실 수 있죠??
+							 String[] ipArr = ip.split("[.]"); // ("\\.")
+							 ipArr[1] = "♡";
+							
+							// 그거 다시 ip에 저장하실 수 있죠??
+							  dto.setBip(String.join(".", ipArr));
+							// 끝.
 						
-				  // 그거 다시 ip에 저장하실 수 있죠??
-						// dto.setBip(ip);
-				  // 끝.
-				  
-			// 172.30.1.53 ---> ♡.♡.♡.♡
-					
-			
-		}
+						// 172.30.1.53 ---> 172.♡.1.53
+						
+						// 번외 (ip주소 전체 변경)
+						// 검사 : .이 없거나, null이면 실행하지 않게 해주세요세요.
+						// if(dto.getBip() != null && dto.getBip().indexOf(".") != -1 ) {
+							  // 여기서 ip 뽑아올 수 있죠??
+									// String ip = dto.getBip();
+							  // ip 중간에 하트 넣어주실 수 있죠??
+									// ip = ip.replaceAll("\\d", "♡"); 
+									
+							  // 그거 다시 ip에 저장하실 수 있죠??
+									// dto.setBip(ip);
+							  // 끝.
+							  
+						// 172.30.1.53 ---> ♡.♡.♡.♡
+		} 
+	}
 		return dto;
 	}
 

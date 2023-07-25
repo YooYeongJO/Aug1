@@ -43,6 +43,12 @@ public class BoardDAO {
 		
 	}
 	
+	public void likeUp(BoardDTO dto2) {
+		sqlSession.update("board.likeUp", dto2);
+	}
+
+	
+	
 	
 	
 	
