@@ -25,8 +25,8 @@ public class BoardService {
 	
 	
 	// 보드 리스트 불러오는 메소드
-	public List<BoardDTO> boardList() {
-		return boardDAO.boardList();
+	public List<BoardDTO> boardList(PageDTO page) {
+		return boardDAO.boardList(page);
 			
 			}
 
@@ -106,6 +106,11 @@ public class BoardService {
 		
 		boardDAO.edit(dto);
 		
+	}
+
+	// 전체 글 수 가져오기 2023-07-26 sql응용
+	public int totalCount() {
+		return boardDAO.totalCount();
 	}
 }
 

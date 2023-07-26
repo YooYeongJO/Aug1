@@ -1,43 +1,46 @@
 @charset "UTF-8";
-.detail-content {
-	margin: 0 auto;
-	width: 800px;
-	height: auto;
-	background-color: white;
-	padding: 10px;
-	box-sizing: border-box;
+body {
+	margin: 0px;
+	padding: 0px;
 }
-.title{
-	width: 100%;
-	height: 50px;
-	line-height: 50px;
-	font-size: large;
+.main{
+	width:100%;
+	height:100vh;
+	background-image: url("../img/캡처fff.PNG");
+	background-size: inherit;
+	background-repeat: no-repeat;
 }
-.name-bar{
-	width: 100%;
-	border-bottom: 1px solid red;
-	background-color: white;
-	min-height: 80px;
-	padding: 20px;
-	box-sizing: border-box;
+.login-box{
+	margin-left: 45%;
+	bottom: 300px;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	position:absolute;
 }
-.name, .like, .date, .ip {
-	width: 50%;
-	height: 20px;
-	float: left;	
+.login-image{
+	padding:15px;
+	border-radius: 50%; 
+	background-color: gray;
 }
-.name, .like{
-	border-bottom: 1px solid red;
+.login-form{
+	width: 200px;
 }
-
-.like, .ip {
-	text-align: right;
+.login-form input{
+	margin: 3px;
+	width: 180px;
+	height: 35px;
+	border: 0px;
+	font-weight: bold;
+	text-align: center;
+	color: green;
 }
-.content {
-	width: 100%;
-	min-height: 500px;
-	height: auto;
-	
+.login-form button{
+	margin: 3px;
+	width: 185px;
+	height: 35px;
+	border: 0px;
+	background-color: green;
+	color: white;
+	font-weight: bold;
 }
-
-

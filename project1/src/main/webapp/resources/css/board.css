@@ -1,13 +1,36 @@
 @charset "UTF-8";
+.board-div{
+	margin: 0 auto;
+	width: 800px;
+	height: auto;
+}
+.page-div {
+	width: 100%;
+	height: 40px;
+	padding-top: 10px;
+	text-align: center;
+}
+.page-div a{
+	text-decoration: none;
+	color: black;
+}
+.page-div img{
+	width: 20px;
+	height: 20px;
+	vertical-align: bottom;
+} 
 
 table{
-	margin:0 auto;
 	width: 800px;
-	height: 500px;
+	height: auto;
 	border-collapse: collapse;
 }
+tr{
+	height: 30px;
+}
+
 th{
-	height:50px;
+	height:30px;
 	background-color: #D4F4FA;
 	border-bottom: 2px solid white;
 }
