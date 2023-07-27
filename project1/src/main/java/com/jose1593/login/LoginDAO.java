@@ -1,4 +1,4 @@
-package com.jose1593.pro1;
+package com.jose1593.login;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

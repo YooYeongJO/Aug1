@@ -67,10 +67,12 @@ function check() { // check를 실행하면 alert 창이 뜰거에요
 				<form action="./login" method="post" onsubmit="return check()">
 					<input type="text" name="id" id="id" placeholder="ID" required="required" maxlength="10" onchange="checkID()">
 					<input type="password" name="pw" id="pw" placeholder="PW" required="required" maxlength="15">
+				
 					<button type="submit" class="login">LOGIN</button>
 <!-- 					check를 클릭하면 위에 스크립트 영역을 부른다     -->
 					<span id="msg"></span>
 				</form>
+				아이디 찾기 | 비밀번호 찾기 | <a href="./join">회원가입</a>
 			</div>
 		</div>
 	</div>

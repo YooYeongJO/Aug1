@@ -13,10 +13,7 @@
 <%@ include file="menu.jsp" %>
 	<h1> 오늘은 조금만 할께요 (୨୧ ❛ᴗ❛)✧ </h1>
 	
-
-<img alt="" src="./img/IMG_0472.jpg" height="350px" > <br>
-
-
+	<img alt="" src="./img/IMG_0472.jpg" height="350px" > <br>
 
 </body>
 </html>

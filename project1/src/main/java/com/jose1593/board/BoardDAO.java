@@ -1,7 +1,6 @@
-package com.jose1593.pro1;
+package com.jose1593.board;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;

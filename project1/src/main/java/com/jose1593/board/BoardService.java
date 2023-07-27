@@ -1,14 +1,14 @@
-package com.jose1593.pro1;
+package com.jose1593.board;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.jose1593.util.Util;
 
 @Service("boardService") 
 // 이 BoardService라는 클래스가 저 소문자 boardService라는 이름으로 등록 시킬게요.

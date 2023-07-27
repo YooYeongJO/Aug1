@@ -1,4 +1,4 @@
-package com.jose1593.pro1;
+package com.jose1593.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -73,5 +73,13 @@ public class LoginController {
 		return "redirect:index";
 	}
 	
+	@GetMapping("/join") // 7월 27일 회원가입 만들기
+	public String join() {
+		return "join";
+	}
+	
+	
+		
 
 }
+

@@ -18,7 +18,7 @@
 				</c:when>
 				<c:otherwise>
 					<li class="lir" onclick="link('logout')">로그아웃</li>
-					<li class="lir" onclick="link('myInfo')">${sessionScope.mname }(${sessionScope.mid })님 반갑습니다</li> <%-- ${session 불러오기 } --%>
+					<li class="liw" onclick="link('myInfo')">${sessionScope.mname }(${sessionScope.mid })님 반갑습니다</li> <%-- ${session 불러오기 } --%>
 				</c:otherwise>
 			</c:choose>
 			
