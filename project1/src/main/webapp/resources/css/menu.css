@@ -23,7 +23,8 @@ nav li{
  	width: 100px; /* 100px를 주면 각각 그에 맞게 너비를 찾아간다*/
  	height: 50px;
  	line-height: 50px;
- 	text-align: center; /* 가운데 정렬 */ 
+ 	text-align: center; /* 가운데 정렬 */
+ 	position: relative; 
 }
 nav li:hover {
 /* 	background-color: #EAEAEA; */

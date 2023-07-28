@@ -3,6 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="login">
+
+	<resultMap type="com.jose1593.login.JoinDTO" id="join"> <!-- type은 실제 dto 경로 -->
+		<result column="m_no" property="no" jdbcType="INTEGER" javaType="Integer" />
+		<result column="m_id" property="id" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_name" property="name" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_addr" property="addr" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_birth" property="birth" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_mbti" property="mbti" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_gender" property="gender" jdbcType="INTEGER" javaType="Integer" />
+	
+	</resultMap> 
 	
 	<select id="login" parameterType="loginDTO" resultType="loginDTO"> 
 <!--                     들어올 타입             나갈 타입 -->
@@ -11,6 +22,16 @@
 			FROM membersview 
 			WHERE m_id=#{m_id } AND m_pw=#{m_pw }
 			
+		</select>
+		
+		<insert id="join" parameterType="com.jose1593.login.JoinDTO">
+			INSERT INTO members (m_id, m_pw, m_name, m_addr, m_birth, m_mbti, m_gender)
+			VALUES(#{id }, #{pw1 }, #{name }, #{addr }, #{birth }, #{mbti }, #{gender })
+		</insert>
+		
+		<!-- 모든 데이터를 가져오는데 일치하는 것만 가져온다 -->
+		<select id="members" resultMap="join">
+ 			SELECT * FROM members 
 		</select>
 
 </mapper>

@@ -2,6 +2,8 @@ package com.jose1593.login;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,15 @@ public class LoginService {
 		return loginDAO.login(dto);
 		
 		
+	}
+
+	public int join(JoinDTO joinDTO) {
+		
+		return loginDAO.join(joinDTO);
+	}
+
+	public List<JoinDTO> members() {
+		return loginDAO.members();
 	}
 
 
