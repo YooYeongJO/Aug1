@@ -24,12 +24,12 @@
 <%@ include file="menu.jsp" %>
 
 	<h1>글쓰기</h1>
-	
 	<div class="write-div">
 		<form action="./write" method="post">
 			<input type="text" name="title">
 			<textarea id="summernote" name="content"></textarea>
-			<button class="btn100" type="submit">글쓰기</button>
+			<button class="btn100 btn btn-primary" type="submit">글쓰기</button>
+			<!-- btn100 btn btn-primary 3가지 스타일이 다 먹는다(스페이스바 사용하면)   -->
 		</form>
 <!-- 		type="submit" => 제출버튼. 폼데이터로 데이터 전송 -->
 	
