@@ -3,6 +3,7 @@ package com.jose1593.rest;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,12 +38,36 @@ public class ResttController {
 		}
 		
 		// boardList2
-		@GetMapping("/boardList2")
-		public String boardList2() {
-			List<Map<String, Object>> list = loginService.boardList2(); 
+		@GetMapping(value = "/boardList2", produces = "application/json; charset=UTF-8")// 한글 처리
+		// value가 적어줘야 produces를 사용할 수 있다.
+		
+		public String boardList2(@RequestParam("pageNo") int pageNo) {
+			// System.out.println("jq가 보내주는 : " + pageNo);
+			
+			List<Map<String, Object>> list = loginService.boardList2((pageNo - 1) * 10);  
 			// 해당 리스트에 내용을 받아서 Map타입으로 온다.
-			System.out.println(list);
-			return "";
+			JSONObject json = new JSONObject();
+			JSONArray arr = new JSONArray(list); // list를 json 배열형태로 만들어준다.
+			json.put("totalCount", loginService.totalCount()); // DB에 한 번더 물어보겠습니다.
+			json.put("pageNo", pageNo);
+			json.put("list", arr);
+			// System.out.println(json.toString());
+			
+			return json.toString();
+			// 서로 통신하기 위해서는 서로 접점이 있어야 하는데 list는 배열형태라 
+			// jsonarray를 감싸서 json이 다시 포장해서 tostring으로 출력
+			
+			/* 커다란 Object 안{}에 값이 있는데 list 출력 
+			 * boardList2 = { totalCount : 128, 
+			 * 					pageNo: 1, 
+			 * 					list = [
+			 *  						{bno:1, btitle:....}
+			 *  						{bno:1, btitle:....},
+			 *  						{bno:1, btitle:....},
+			 * 	              	       ] 
+			 * 				}
+			 *  객체 : {키 : 값, 이름 : 값, ............} 값이란 부분에 Object가 들어갈 수 있다.
+			 */
 		}
 
 }

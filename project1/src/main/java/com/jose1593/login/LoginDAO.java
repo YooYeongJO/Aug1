@@ -36,9 +36,14 @@ public class LoginDAO {
 		return sqlSession.selectOne("login.checkID", id);
 	}
 
-	public List<Map<String, Object>> boardList2() {
+	public List<Map<String, Object>> boardList2(int i) {
 		
-		return sqlSession.selectList("login.boardList2");
+		return sqlSession.selectList("login.boardList2", i);
+	}
+
+	public int totalCount() {
+		
+		return sqlSession.selectOne("login.totalCount");
 	}
 	
 

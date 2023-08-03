@@ -2,6 +2,7 @@ package com.jose1593.login;
 
 
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +39,14 @@ public class LoginService {
 		return loginDAO.checkID(id);
 	}
 
-	public List<Map<String, Object>> boardList2() {
+	public List<Map<String, Object>> boardList2(int i) {
 		
-		return loginDAO.boardList2();
+		return loginDAO.boardList2(i);
+	}
+
+	public int totalCount() {
+		
+		return loginDAO.totalCount();
 	}
 
 
