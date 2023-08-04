@@ -86,6 +86,14 @@ public class BoardController {
 		// (내 글만 보는게 아니라 다른 사람의 글을 보니까) 
 		
 		BoardDTO result = boardService.detail(dto); 
+		// System.out.println(result.getCommentcount());
+		if(result.getCommentcount() > 0) {
+			// 데이터베이스에 물어봐서 jsp로 보냅니다.
+			List<Map<String, Object>> commentList = boardService.commentList(bno);
+			model.addAttribute("commentList", commentList);
+			
+		}
+		
 		model.addAttribute("dto", result); 
 		
 		return "detail";

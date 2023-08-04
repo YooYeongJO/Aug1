@@ -1,6 +1,7 @@
 package com.jose1593.board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,7 +34,7 @@ public class BoardDAO {
 		
 	}
 	public void delete(BoardDTO dto) {
-		sqlSession.delete("board.delete", dto); // 네임스페이스.아이디, 값
+		sqlSession.update("board.delete", dto); // 네임스페이스.아이디, 값
 		
 	}
 
@@ -48,6 +49,11 @@ public class BoardDAO {
 
 	public int totalCount() {
 		return sqlSession.selectOne("board.totalCount");
+	}
+
+	public List<Map<String, Object>> commentList(int bno) {
+		
+		return sqlSession.selectList("board.commentList", bno);
 	}
 
 	

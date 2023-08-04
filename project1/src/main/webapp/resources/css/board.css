@@ -54,3 +54,8 @@ td{
 tr:hover {
 	background-color: #EAEAEA;
 }
+
+span {
+	color: green;
+	font-weight: bold;	
+}

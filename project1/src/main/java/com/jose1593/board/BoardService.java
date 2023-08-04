@@ -1,6 +1,7 @@
 package com.jose1593.board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -111,6 +112,11 @@ public class BoardService {
 	// 전체 글 수 가져오기 2023-07-26 sql응용
 	public int totalCount() {
 		return boardDAO.totalCount();
+	}
+
+	public List<Map<String, Object>> commentList(int bno) {
+		
+		return boardDAO.commentList(bno);
 	}
 }
 
