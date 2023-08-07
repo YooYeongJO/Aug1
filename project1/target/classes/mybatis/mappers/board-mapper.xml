@@ -57,5 +57,10 @@
 	<select id="commentList" parameterType="Integer" resultType="Map">
 		SELECT * FROM commentview WHERE bno=#{bno }
 	</select>
+	
+ 	<update id="cdel" parameterType="Map" > <!-- update는 resultType이 없다  -->
+		UPDATE comments SET c_del=0    <!-- 1이면 삭제 안한 글, 0은 삭제 한 글 --> 
+		WHERE bno=#{bno } AND c_no=#{cno } AND m_no=(SELECT m_no FROM members WHERE m_id=#{mid })
+	</update>
 
 </mapper>

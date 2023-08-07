@@ -3,6 +3,8 @@ package com.jose1593.rest;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jose1593.board.BoardService;
 import com.jose1593.login.LoginService;
+import com.jose1593.util.Util;
 
 @RestController // ﻿@RestController는 @Controller에 @ResponseBody가 추가된 것
 public class ResttController {
 	@Autowired
 	private LoginService loginService; // Autowired는 한 줄만 적용된다 
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
+	private Util util;
 	
 	
 	// 아이디 중복검사 2023-08-02
@@ -35,6 +44,13 @@ public class ResttController {
 			
 			
 			return json.toString(); // 이미 가입되어 있으면 1, 없으면 0
+		}
+		
+		//자바스크립트로 만든 것.
+		@PostMapping("/checkID2")
+		public String checkID2(@RequestParam("id") String id) {
+			int result = loginService.checkID(id);
+			return result+"";
 		}
 		
 		// boardList2
@@ -68,6 +84,41 @@ public class ResttController {
 			 * 				}
 			 *  객체 : {키 : 값, 이름 : 값, ............} 값이란 부분에 Object가 들어갈 수 있다.
 			 */
-		}
-
+			
+			
+				
+			}
+		
+			@PostMapping("/cdelR") // detail.jsp ajax문에서 넘어온 값
+			public String cdelR(@RequestParam Map<String, Object> map, HttpSession session) {
+				// if문 추가하기
+				
+				int result = 0;
+				if(session.getAttribute("mid") != null) {
+					 // 값 들어왔는지 여부 검사
+				
+					 if(map.containsKey("bno") && map.get("cno") != null &&
+							 
+					 	!(map.get("bno").equals("")) && !(map.get("cno").equals("")) && 	
+						// map이라는 객체에서 "bno"과 "cno" 두 개의 키에 해당하는 값이 
+						// 빈 문자열이 아닌 경우에 참(True)이 됩니다. 
+						// 즉, 두 값 모두가 빈 문자열이 아니어야 조건식이 참
+						util.isNum(map.get("bno")) && util.isNum(map.get("cno"))) {
+					
+						map.put("mid", session.getAttribute("mid"));
+					 	System.out.println(map);
+						result = boardService.cdel(map);			
+								
+						}
+				}
+				JSONObject json = new JSONObject();
+				json.put("result", result);
+			
+				return json.toString();
+			
 }
+}
+			
+		
+
+

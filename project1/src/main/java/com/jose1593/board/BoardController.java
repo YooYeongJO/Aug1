@@ -219,5 +219,37 @@ public class BoardController {
 		
 	}
 	
+	// 2023-08-07 입추, 프레임워크 프로그래밍
+	@GetMapping("/cdel") // 필수값으로 bno, cno가 들어와야 한다.
+	public String cdel(@RequestParam Map<String, Object> map, HttpSession session) {
+		// 로그인여부 검사
+		if(session.getAttribute("mid") != null) {
+			// 값 들어왔는지 여부 검사
+			
+			if(map.containsKey("bno") && map.get("cno") != null && 
+					// map.containsKey("bno"): 맵 객체(map)에 "bno"라는 키가 존재하는지 확인합니다. 
+					// containsKey 메서드는 해당 키가 맵에 있는지를 검사합니다.
+					// map.get("cno") != null: "cno"라는 키에 해당하는 값을 가져옵니다. 
+					// 이때 값이 null이 아닌지를 확인합니다. 즉, "cno"라는 키가 맵에 있고, 
+					// 그에 해당하는 값이 null이 아닌지를 검사합니다.
+					// 만약 이 조건문이 참(True)이라면, map 객체는 "bno"라는 키를 가지고 있고, 
+					// "cno"라는 키에 해당하는 값이 null이 아닌 상태입니다. 
+					// 따라서 조건문 안의 코드 블록이 실행됩니다. 반대로, 조건문이 거짓(False)이라면, 
+					// 해당 코드 블록은 실행되지 않습니다.
+					
+					!(map.get("bno").equals("")) && !(map.get("cno").equals("")) && 	
+					// map에서 bno가 비어있지 않고, null이지도 않아?? map에서 cno가 비어있지 않고, null이지도 않아??
+			util.isNum(map.get("bno")) && util.isNum(map.get("cno"))) { 
+				
+				// System.out.println("여기로 들어왔습니다.");
+				map.put("mid", session.getAttribute("mid"));
+				int result = boardService.cdel(map);
+				System.out.println("삭제 결과 : " + result);
+			}
+			
+		}
+		return "redirect:/detail?bno="+map.get("bno"); 
+	}
+	
 	
 }

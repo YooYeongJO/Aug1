@@ -83,4 +83,16 @@ public class Util {
 	
 	return ip;
 }
+	
+	//숫자인지 확인하기
+	public boolean isNum(Object obj) {
+		try {
+			Integer.parseInt(String.valueOf(obj)); //obj 값을 뽑아서 String 타입으로
+			return true;
+			
+		} catch (Exception e) {
+			return false;
+			
+		}
+	}
 }

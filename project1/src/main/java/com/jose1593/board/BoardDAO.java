@@ -56,6 +56,11 @@ public class BoardDAO {
 		return sqlSession.selectList("board.commentList", bno);
 	}
 
+	public int cdel(Map<String, Object> map) {
+		
+		return sqlSession.update("board.cdel", map);
+	}
+
 	
 	
 	

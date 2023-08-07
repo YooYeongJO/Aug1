@@ -85,6 +85,12 @@ public class LoginController {
 		return "join";
 	}
 	
+	//자바스크립트로 만든것.
+		@GetMapping("/join2")
+		public String join2() {
+			return "join2";
+		}
+	
 	@PostMapping("/join") 
 	public String join(JoinDTO joinDTO) {
 		System.out.println("jsp에서 오는 값 : " + joinDTO.getGender());
