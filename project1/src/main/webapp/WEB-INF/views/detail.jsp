@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/detail.css">
+<link rel="stylesheet" href="./css/detail.css?ver=0.2">
 <link rel="stylesheet" href="./css/menu.css">
-<link rel="stylesheet" href="./css/board.css?version=10">
+<link rel="stylesheet" href="./css/board.css">
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <script src="./js/jquery-3.7.0.min.js"></script>
@@ -105,7 +105,65 @@
 	}); 
 	
 	
-	// 댓글 수정 버튼 만들기 = 반드시 로그인 하고, 자신의 글인지 확인하는 검사 구문 필요. (8월 7일)
+		// 댓글 수정 버튼 만들기 = 반드시 로그인 하고, 자신의 글인지 확인하는 검사 구문 필요. (8월 7일)
+		// .cedit
+		$(".cedit").click(function() {
+			// alert("!");
+			// 변수만들기 bno, cno, content, 글쓰기 수정html
+			const bno = "${dto.bno}"; // int타입으로 오는 것을 String으로 감싼 형태
+			const cno = $(this).parent().siblings(".cid").text();
+			// $(this)는 이벤트를 트리거한 현재 요소를 가리킵니다. 
+			// .parent()는 현재 요소의 부모 요소를 가져옵니다. 
+			// .siblings(".cid")는 부모 요소의 모든 형제 요소들 중에서 클래스가 "cid"인 요소를 선택합니다. 
+			// .text()는 선택된 요소의 텍스트 내용을 가져옵니다. 
+			// 따라서 cno 변수에는 "cid" 클래스를 가진 형제 요소의 텍스트 값이 할당됩니다.
+			
+			let content = $(this).parents(".commentHead").siblings(".commentBody").text();
+			// 현재 요소($(this))의 조상 중 클래스가 .commentHead인 요소의 형제 중 
+			// .commentBody 클래스를 가진 요소의 텍스트 내용을 찾는 데 사용됩니다.
+			
+			let recommentBox = '<div class="recommentBox">';
+			recommentBox += '<form action="./cedit" method="post">';
+			recommentBox += '<textarea id="rcta" name="recomment" placeholder="댓글을 입력하세요">'+content+'</textarea>';
+			recommentBox += '<input type="hidden" id="bno" name="bno" value="${dto.bno }">';
+			recommentBox += '<input type="hidden" id="cno" name="cno" value="'+cno+'">';
+			recommentBox += '<button type="submit" id="recomment">댓글수정하기</button>';
+			recommentBox += '</form>';
+			recommentBox += '</div>';
+			
+					
+			// alert(bno + "/" + cno + "/" + content);
+			// 내 위치 찾기 
+			let commentDIV = $(this).parents(".comment");
+			// 현재 요소($(this))의 클래스가 "comment"인 조상 요소를 선택합니다.
+			// commentDIV.css("color", "red");
+			commentDIV.after(recommentBox);
+			
+			commentDIV.remove();
+			
+			// 수정, 삭제, 댓글창 열기 모두 삭제하기
+			$(".cedit").remove();
+			$(".cdel").remove();
+			$("#opeanComment").remove();
+			
+		});
+		
+	
+		
+		// 댓글쓰기 몇 글자 썻는지 확인하는 코드 2023-08-08 프레임워크 프로그래밍
+		// keyup    텍스트입력창 : #commenttextarea, 버튼 : #comment
+		$("#commenttextarea").keyup(function() { // keyup
+			// let text = $(this).val(); // val 값을 뽑아서 text에 저장
+			let text = $(this).val(); // val 값의 길이를 뽑아서 text에 저장
+			
+			if(text.length > 600) { // text가 600자가 넘어가면
+				alert("600자 넘었어요.");
+				$(this).val( text.substr(0, 100) ); // 안에 val는 값을 뽑아내서 왼쪽 val에 저장
+				// substr 맨 처음부터 100까지 값을 뽑아냄
+			}
+			$("#comment").text("글쓰기" + text.length + "/100");
+		}); 
+	
 	});
 	
 	
@@ -144,7 +202,7 @@
 							<div class="cname">${c.m_name }(${c.m_id })
 								<c:if test="${sessionScope.mid ne null && sessionScope.mid eq c.m_id }">
 <!-- 									sessionScope.mid ne null 이걸 왜 붙이는 걸까... 문제해결 -->
-									<img alt="" src="./img/update.png" onclick="cedit()">&nbsp; <!--수정 버튼   -->
+									<img alt="" src="./img/update.png" class="cedit" onclick="cedit()">&nbsp; <!--수정 버튼   -->
 			 						<img alt="" src="./img/trash.png" class="cdel" onclick="cdel1(${c.c_no })"> <!--삭제 버튼   -->
 			 					</c:if>
 			 				</div>

@@ -251,5 +251,28 @@ public class BoardController {
 		return "redirect:/detail?bno="+map.get("bno"); 
 	}
 	
+	// {recomment=댓글을 씁니다, bno=216, cno=76}
+	@PostMapping("/cedit") 
+	public String cedit(@RequestParam Map<String, Object> map, HttpSession session) {
+		if(session.getAttribute("mid") != null) {
+			if(map.get("bno") != null && !(map.get("bno").equals("")) && 
+				map.containsKey("cno") && !(map.get("cno").equals(""))  ) {
+				map.put("mid", session.getAttribute("mid"));
+				
+				System.out.println(map);
+				int result = boardService.cedit(map);
+				System.out.println(result);
+				
+				return "redirect:/detail?bno="+map.get("bno");
+			} else {
+				return "redirect:/board";
+			}
+			
+		
+		} else {
+			return "redirect:/login";
+		}
+		
+	}
 	
 }
